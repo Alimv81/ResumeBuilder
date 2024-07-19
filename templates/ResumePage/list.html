@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	<title>Resume List</title>
+{% endblock %}
+
+
+{% block body_block %}
+    <a href="{% url 'ResumePage:home' %}">main page</a>
+	<ul>
+        {% for resume in resume_list %}
+        	<li>
+                <p>
+                    <a href='{{ resume.get_absolute_url }}'></a>
+                    {{ resume.pk }}  - {{ resume.full_name }}
+                </p>
+            </li>
+        {% endfor %}
+        
+    </ul>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	Create Resume
+{% endblock %}
+
+
+{% block body_block %}
+	<form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">create</button>
+        <a href="{% url 'ResumePage:home' %}">main page</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	Home Page
+{% endblock %}
+
+
+{% block body_block %}
+	<h2>
+        free online platform to build resume, and see what others have built.
+        note: every 24 hours the database gets cleaned.
+    </h2>
+    
+    <a href="{% url 'ResumePage:resume_new' %}">
+        <p>create new resume</p>
+    </a>
+    
+{% endblock %}
