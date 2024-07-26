@@ -15,4 +15,4 @@ class Resume(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
-        return reverse('ResumePage:detail', kwargs={'pk': self.pk})
+        return reverse('ResumePage:resume_detail', kwargs={'pk': self.pk})

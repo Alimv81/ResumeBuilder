@@ -9,11 +9,15 @@
     <a href="{% url 'ResumePage:home' %}">main page</a>
 	<ul>
         {% for resume in resume_list %}
-        	<li>
+        	<li style="display-inside: ruby;">
                 <p>
-                    <a href='{{ resume.get_absolute_url }}'></a>
+                    <a href='{{ resume.get_absolute_url }}'/>
                     {{ resume.pk }}  - {{ resume.full_name }}
                 </p>
+                
+                <form method="get" action="{% url 'ResumePage:resume_delete' resume.pk %}"> 
+                    <button type="submit">delete</button>
+                </form>
             </li>
         {% endfor %}
         

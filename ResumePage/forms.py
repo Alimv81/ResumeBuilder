@@ -37,3 +37,15 @@ class ResumeForm(forms.ModelForm):
         if len(phone_number) < 11 or not phone_number.isdigit():
             raise forms.ValidationError("Please enter a valid phone number")
         return phone_number
+
+
+class ResumeDetailForm(forms.ModelForm):
+    class Meta:
+        model = Resume
+        fields = ['full_name', 'profile_summary', 'education', 'skills',
+                  'work_experience', 'email', 'phone_number']
+
+    def __init__(self, *args, **kwargs):
+        super(ResumeDetailForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs['readonly'] = True

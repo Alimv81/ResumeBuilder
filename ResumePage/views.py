@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from ResumePage.forms import ResumeForm
+from ResumePage.forms import ResumeForm, ResumeDetailForm
 from ResumePage.models import Resume
 
 
@@ -10,23 +10,20 @@ def home(request):
 
 
 def resume_list(request):
-    return render(request, "ResumePage/list.html", {})
+    resumes = Resume.objects.all()
+    return render(request, "ResumePage/list.html", {'resume_list': resumes})
 
 
-def resume_detail(request, resume_id):
-    resume = get_object_or_404(Resume, pk=resume_id)
-    resume_form = ResumeForm(request.POST or None, instance=resume)
+def resume_detail(request, pk):
+    resume = get_object_or_404(Resume, pk=pk)
+    resume_form = ResumeDetailForm(request.POST or None, instance=resume)
     return render(request, "ResumePage/detail.html", {"form": resume_form})
 
 
-def resume_update(request, resume_id):
-    pass
-
-
-def resume_delete(request, resume_id):
-    resume = get_object_or_404(Resume, pk=resume_id)
+def resume_delete(request, pk):
+    resume = get_object_or_404(Resume, pk=pk)
     resume.delete()
-    return redirect("ResumePage:home")
+    return redirect("ResumePage:resume_list")
 
 
 def resume_new(request):
